@@ -1,0 +1,104 @@
+	<section>
+
+			<div id="content10" class="darkbg4">
+				<div class="container">
+
+				<div class="row">
+
+					<div class="col-md-3">
+
+						<p class="headertitle1">YuPa Discovery Sdn Bhd</p>
+
+						<p class="subtext1">No.18, Lorong Aman, Georgetown, <br>10350 Pulau Pinang<br> 04 - 227 0766<br> lets.yupa@gmail.com</p>
+
+					</div>			
+
+					<div class="col-md-3">
+
+						<p class="headertitle1">Resources</p>
+
+						<p class="subtext1"><a href="{{ route('about-us') }}">About us</a></p>
+
+						<p class="subtext1">Terms and conditions</p>
+
+						<p class="subtext1">Privacy Policy</p>
+
+						<p class="subtext1"><a class="nav" href="/blog">Blog</a></p>
+
+						<p class="subtext1">Career</p>
+
+						<p class="subtext1">Frequently Asked Questions</p>
+
+					</div>
+
+					<div class="col-md-3">
+
+						<p class="headertitle1">Partnerships</p>
+
+						<p class="subtext1">Partner Login</p>
+
+						<p class="subtext1">Affiliate Partnership</p>
+
+						<p class="subtext1">Influencer Program</p>
+
+						<p class="subtext1">Agent Marketplace</p>
+
+					</div>
+
+					<div class="col-md-3">		
+
+						<p class="headertitle1">Social Media</p>
+
+						<p class="subtext1">
+
+						<a href="{{config('settings.linkedin_link')}}">
+							<img src="{{asset('fontend/images/linked_in.png')}}" class="icon-media"/>
+						</a>
+
+						<a href="{{config('settings.fb_id')}}">
+							<img src="{{asset('fontend/images/facebook.png')}}" class="icon-media"/>
+						</a>
+
+						<a href="{{config('settings.insta_link')}}">
+							<img src="{{asset('fontend/images/instagram.png')}}" class="icon-media"/>
+						</a>
+						<a href="{{config('settings.youtube_link')}}">
+							
+						<img src="{{asset('fontend/images/youtube.png')}}" class="icon-media"/>
+						</a>
+
+						</p>
+
+						<br>
+
+						<br>
+
+
+
+						<p class="headertitle1">Payment Method</p>
+
+						<p class="subtext1">
+
+						<img src="{{asset('fontend/images/mastercard.jpg')}}" class="icon-payment"/>
+
+						<img src="{{asset('fontend/images/visa.jpg')}}" class="icon-payment"/>
+
+						<img src="{{asset('fontend/images/paypal.jpg')}}" class="icon-payment"/>
+
+						<img src="{{asset('fontend/images/american-express.jpg')}}" class="icon-payment"/>
+
+						</p>
+
+					</div>
+					
+				</div>
+
+			</div>
+		</div>
+
+		</section>
+  <div class="row">
+
+		<center><p class="copyright">&copy; 2019 YuPa Discovery Sdn. Bhd. All right reserved.</p></center>
+
+	</div>
