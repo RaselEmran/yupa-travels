@@ -139,6 +139,11 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'admin', 'mi
 
 	Route::get('booking/hotel', 'BookingController@hotel')->name('hotel.booking');
 	Route::get('booking/hotel/details/{booking}', 'BookingController@hotel_details')->name('hotel.booking_details');
+
+	/*::::::::::::::::::::::::::::::::host:::::::::::*/
+	Route::get('host','DashboardController@host')->name('host');
+	Route::get('host/approve/{id}','DashboardController@host_apply')->name('host.approve');
+	Route::get('host/reject/{id}','DashboardController@host_reject')->name('host.reject');
 });
 
 // Route::get('/home', 'HomeController@index')->name('home');
@@ -177,6 +182,13 @@ Route::get('/wishlist', 'ExperienceBookingController@wishlist')->name('wishlist'
 Route::get('/experience-booking-details/{id}', 'ExperienceBookingController@packege_book_details')->name('experience-booking-details')->middleware('auth');
 Route::get('/user-travel-kit', 'DashboardController@user_kit')->name('user-travel-kit')->middleware('auth');
 Route::get('/user-kit-details/{id}', 'DashboardController@user_kit_details')->name('user-kit-details')->middleware('auth');
+Route::get('/apply-host','Hostcontroller@index')->name('host')->middleware('auth');
+Route::post('/apply-host','Hostcontroller@store')->name('host.store')->middleware('auth');
+Route::get('/add-hotel','Hostcontroller@hotel_create')->name('add-hotel')->middleware('auth');
+Route::post('/add-hotel','Hostcontroller@hotel_store')->name('hotel.store')->middleware('auth');
+Route::get('/hotel-list','Hostcontroller@hotel_list')->name('hotel-list')->middleware('auth');
+Route::get('/hotel-edit/{id}','Hostcontroller@hotel_edit')->name('hotel.edit')->middleware('auth');
+Route::post('/hotel-edit','Hostcontroller@hotel_update')->name('hotel.update')->middleware('auth');
 
 /*::::::::::::::::::::::travelkit:::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
