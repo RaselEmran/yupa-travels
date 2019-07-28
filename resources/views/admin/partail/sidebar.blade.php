@@ -113,7 +113,7 @@
                                     <ul>
                                         <li class="{{Request::is('admin/setting/api') ?'active':''}}"><a href="{{ route('admin.api') }}"> Api Setting</a></li>
 
-                                          <li class="{{Request::is('admin/payment/hotel-payment') ?'active':''}}"><a href="{{ route('admin.payment.hotel') }}">Hotel Payment</a></li>
+                                          <li class="{{Request::is('admin/payment/hotel-payment') ?'active':''}}"><a href="{{ route('admin.host') }}">Host Apply</a></li>
 
                                     </ul>
                                 </li>

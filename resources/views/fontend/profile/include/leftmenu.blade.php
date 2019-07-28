@@ -5,7 +5,7 @@
 				<center>
 				<span>
 
-				<img src="{{asset(isset($info)?'/storage/profile/user/'.$info:'fontend/images/profile-pic.png')}}" class="profile-pic-dash" /></span>
+				<img src="{{asset(isset(Auth::user()->image)?'/storage/profile/user/'.Auth::user()->image:'fontend/images/profile-pic.png')}}" class="profile-pic-dash" /></span>
 				</center>
 			</div>
 			<div class="col-md-12" style="padding-bottom: 10px;">
@@ -44,7 +44,27 @@
 				<div class="dash-menu"><a href="{{ route('wishlist') }}" class="menu-a {{Request::is('wishlist') ?'active':''}}"><i class="far fa-heart icon-menu"></i><span class="menu-space">Wishlist</span></a></div>
 			</div>
 			<div class="col-md-12">
-				<div class="dash-menu"><a href="{{ route('wishlist') }}" class="menu-a {{Request::is('host') ?'active':''}}"><i class="far fa-heart icon-menu"></i><span class="menu-space">Apply As Host</span></a></div>
+				
+				@php
+				$auth =Auth::user()->id;
+					$check =App\Host::where('user_id',$auth)->first();
+				@endphp
+				@if ($check && $check->status =='approve')
+				<div class="dash-menu">
+				<a href="{{ route('add-hotel') }}" class="menu-a {{Request::is('add-hotel') ?'active':''}}"><i class="far fa-heart icon-menu"></i><span class="menu-space">Add Hotel</span></a>
+				</div>
+
+				<div class="dash-menu">
+				<a href="{{ route('hotel-list') }}" class="menu-a {{Request::is('hotel-list') ?'active':''}}"><i class="far fa-github"></i><span class="menu-space"> Hotel List</span></a>
+				</div>
+
+				@else
+				<div class="dash-menu">
+				<a href="{{ route('host') }}" class="menu-a {{Request::is('apply-host') ?'active':''}}"><i class="far fa-bar-chart"></i><span class="menu-space">Apply as Host</span></a>
+				</div>
+
+				@endif
+				
 			</div>
 			<div class="col-md-12 dash-logout-border">
 				<div class="dash-menu"><a href="{{ route('logout') }}" class="menu-a" id="logout"><i class="fas fa-sign-out-alt icon-logout"></i><span class="menu-space">Log out</span></a></div>

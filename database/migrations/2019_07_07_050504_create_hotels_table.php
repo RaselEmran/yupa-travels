@@ -13,6 +13,7 @@ class CreateHotelsTable extends Migration {
 	public function up() {
 		Schema::create('hotels', function (Blueprint $table) {
 			$table->increments('id');
+			$table->integer('user_id')->nullable()->unsigned();
 			$table->string('name')->nullable();
 			$table->string('entire_place')->nullable();
 			$table->double('price', 10, 2)->default(0.00);
@@ -27,6 +28,7 @@ class CreateHotelsTable extends Migration {
 			$table->string('meta_keywords')->nullable();
 			$table->text('meta_description')->nullable();
 			$table->timestamps();
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 		});
 	}
 

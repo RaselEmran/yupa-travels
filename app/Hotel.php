@@ -7,7 +7,7 @@ use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Hotel extends Model {
 	use SearchableTrait;
-	protected $with = ['amenities', 'reviews'];
+	protected $with = ['amenities', 'reviews','user'];
 
 	/**
 	 * Searchable rules.
@@ -39,4 +39,9 @@ class Hotel extends Model {
 	public function reviews() {
 		return $this->hasMany('App\HotelReview');
 	}
+
+	public function user()
+    {
+    	return $this->belongsTo('App\User');
+    }
 }

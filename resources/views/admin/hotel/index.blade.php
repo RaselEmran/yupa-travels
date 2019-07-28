@@ -33,6 +33,7 @@
                         <th>Photo</th>
                         <th>Hotel Name</th>
                         <th>Status</th>
+                        <th>Added</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -47,6 +48,14 @@
                             <button class="btn btn-xs btn-success">Active</button>
                             @else
                             <button class="btn btn-xs btn-danger">In Active</button>
+                            @endif
+                        </td>
+
+                        <td>
+                            @if($element->user_id)
+                            <button class="btn btn-xs btn-success">{{$element->user->name}}</button>
+                            @else
+                            <button class="btn btn-xs btn-danger">In Admin</button>
                             @endif
                         </td>
                         <td>

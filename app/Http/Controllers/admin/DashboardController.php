@@ -11,6 +11,7 @@ use App\Destination;
 use App\Packege;
 use App\HotelBooking;
 use App\Hotel;
+use App\Host;
 use Illuminate\Support\Facades\Storage;
 use Validator;
 use Illuminate\Http\Request;
@@ -100,4 +101,30 @@ class DashboardController extends Controller {
 		$travelars = User::all();
 		return view('admin.travelar', compact('travelars'));
 	}
+
+  //host apply list
+  public function host()
+  {
+    $host =Host::all();
+    return view('admin.setting.host',compact('host'));
+  }
+
+  public function host_apply(Request $request,$id)
+  {
+    $host =Host::find($id);
+    $host->status ='approve';
+    $host->save();
+    return response()->json(['success' => true, 'status' => 'success', 'message' => 'Apply Approved', 'goto' => route('admin.host')]);
+
+  }
+
+  public function host_reject($id)
+  {
+      $host = Host::find($id);
+      unlink('storage/host/file/'.$host->file);
+      $host->delete();
+      if ($host) {
+         return response()->json(['success' => true, 'status' => 'success', 'message' => 'Applicant Rejected']);
+      }
+  }
 }
