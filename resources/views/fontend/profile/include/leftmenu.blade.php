@@ -44,7 +44,7 @@
 				<div class="dash-menu"><a href="{{ route('wishlist') }}" class="menu-a {{Request::is('wishlist') ?'active':''}}"><i class="far fa-heart icon-menu"></i><span class="menu-space">Wishlist</span></a></div>
 			</div>
 			<div class="col-md-12">
-				<div class="dash-menu"><a href="{{ route('wishlist') }}" class="menu-a {{Request::is('wishlist') ?'active':''}}"><i class="far fa-heart icon-menu"></i><span class="menu-space">Apply As Host</span></a></div>
+				<div class="dash-menu"><a href="{{ route('wishlist') }}" class="menu-a {{Request::is('host') ?'active':''}}"><i class="far fa-heart icon-menu"></i><span class="menu-space">Apply As Host</span></a></div>
 			</div>
 			<div class="col-md-12 dash-logout-border">
 				<div class="dash-menu"><a href="{{ route('logout') }}" class="menu-a" id="logout"><i class="fas fa-sign-out-alt icon-logout"></i><span class="menu-space">Log out</span></a></div>
