@@ -26,10 +26,11 @@
             <th>SL</th>
             <th>Travelar name</th>
             <th>Hotel Name</th>
-            <th>Checkin Date</th>
-            <th>Chcekout Date</th>
+            <th>Checkin</th>
+            <th>Chcekout</th>
             <th>Guest</th>
-            <th>Price</th>
+            <th>Night</th>
+            <th>Total</th>
             <th>Action</th>
 
           </tr>
@@ -43,7 +44,8 @@
             <td>{{$element->check_in}}</td>
             <td>{{$element->check_out}}</td>
             <td>{{$element->guest}}</td>
-            <td>{{$element->price}}</td>
+            <td>{{$element->night}}</td>
+            <td>{{$element->total_price}}</td>
             <td>
               <a href="{{ route('admin.hotel.booking_details',$element->id) }}" class="btn btn-success"  ><i class=" icon-eye8"></i>View</a>
             </td>

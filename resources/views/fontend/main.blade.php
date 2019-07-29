@@ -92,7 +92,7 @@
 				@endforeach
 
 				</div>
-				
+
 			</div>
 		</div>
 	</section>
@@ -139,9 +139,9 @@
 				</div>
 				@foreach($data['hotel'] as $hotel)
 				<div class="col-md-3 col-sm-4 col-xs-12 borderimg1">
-					
+
 					<div class="darkbg3">
-						<img src="{{asset('/storage/hotel/photo/'.$hotel->photo)}}" class="img3"/>
+						<a href="{{ route('hotel.show', $hotel->id) }}"><img src="{{asset('/storage/hotel/photo/'.$hotel->photo)}}" class="img3"/></a>
 						<div class="row">
 							<div class="col-md-12 titleimg4"><a href="{{ route('hotel.show', $hotel->id) }}">{{ $hotel->name }}</a></div>
 							<div class="col-md-6 reviewcontainer">
@@ -150,7 +150,7 @@
 							<div class="col-md-6 price1">MYR {{ $hotel->price }}</div>
 						</div>
 					</div>
-					
+
 				</div>
 				@php
 				$reviews = $hotel->reviews->where('status', 'approved');
@@ -225,18 +225,18 @@
 				</div>
 				<div class="col-md-12 partner-container">
 				@foreach ($data['member'] as $allmember)
-				
+
 					<div class="col-md-2">
-					
+
 						<div>
-						
+
 								<img src="{{asset('/storage/member/'.$allmember->photo)}}" width="150px" height="105"" alt="">
-							
+
 						</div>
-					
+
 					</div>
 				@endforeach
-				
+
 				</div>
 			</div>
 		</div>

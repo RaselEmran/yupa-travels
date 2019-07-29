@@ -22,18 +22,22 @@
             <div class="col-md-12">
                 <h4>Booking Info</h4>
                 <table class="table">
-                    <tr>
-                        <th>Check In Date</th>
-                        <th>Check Out Date</th>
-                        <th>Guest</th>
-                        <th>Price</th>
-                    </tr>
-                    <tr>
-                        <td>{{$booking->check_in}}</td>
-                        <td>{{$booking->check_out}}</td>
-                        <td>{{$booking->guest}}</td>
-                        <td>{{$booking->price}}</td>
-                    </tr>
+                         <tr>
+                    <th>Check In Date</th>
+                    <th>Check Out Date</th>
+                    <th>Guest</th>
+                    <th>Price</th>
+                    <th>Night</th>
+                    <th>Total</th>
+                </tr>
+                <tr>
+                    <td>{{$booking->check_in}}</td>
+                    <td>{{$booking->check_out}}</td>
+                    <td>{{$booking->guest}}</td>
+                    <td>{{$booking->price}}</td>
+                    <td>{{$booking->night}}</td>
+                    <td>{{$booking->total_price}} </td>
+                </tr>
                 </table>
             </div>
             <div class="col-md-12">
@@ -99,7 +103,7 @@
         <div class="row">
             <div class="col-md-12">
                 <form  action="{{ route('admin.send-hotel-mail') }}" method="post" id="hotel_send">
-                
+
                  <input type="hidden" name="booking_id" value="{{$booking->id}}">
                 <input type="hidden" name="user_id" value="{{$booking->user_id}}">
                     <table class="table table-bordered">

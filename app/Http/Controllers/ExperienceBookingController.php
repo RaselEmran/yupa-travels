@@ -42,8 +42,8 @@ class ExperienceBookingController extends Controller {
 		// if ($request->one_way !==1) {
 		//    return response()->json(['success' => true, 'status' => 'success', 'message' => 'Packege Book Successfully']);
 		// }
-        $invoice_id = uniqid();
-        $secret =uniqid();
+		$invoice_id = uniqid();
+		$secret = uniqid();
 		if ($request->one_way) {
 			$validator = Validator::make($request->all(), [
 				'depart_date' => 'required|string',
@@ -116,7 +116,7 @@ class ExperienceBookingController extends Controller {
 			}
 		}
 // 		return response()->json(['success' => true, 'status' => 'success', 'message' => 'Packege Book Successfully.Check Your mail After 24 hours', 'goto' => route('booking-result')]);
-    return redirect('/booking-result')->with('message','Packege Book Successfully.Check Your mail After 24 hours');
+		return redirect('/booking-result')->with('message', 'Packege Book Successfully.Check Your mail After 24 hours');
 	}
 
 	public function booking_result(Request $request) {
@@ -124,15 +124,14 @@ class ExperienceBookingController extends Controller {
 		$token = $request->token;
 		$paymentId = $request->paymentId;
 		$PayerID = $request->PayerID;
-		if (isset($paymentId) && isset($token) && isset($PayerID) && $secret)
-		{
-		 $userPackege =UserPackege::where('secret',$secret)->first();	
+		if (isset($paymentId) && isset($token) && isset($PayerID) && $secret) {
+			$userPackege = UserPackege::where('secret', $secret)->first();
 
-		 $userpackege->status=true;
-		 $userpackege->transaction_id=$paymentId;
-		 $userpackege->invoice_id=$token;
-		 $userpackege->save();
-		 $message = 'Your Order Payment Done Successfull';
+			$userpackege->status = true;
+			$userpackege->transaction_id = $paymentId;
+			$userpackege->invoice_id = $token;
+			$userpackege->save();
+			$message = 'Your Order Payment Done Successfull';
 			return redirect('/booking-result')->with('message', $message);
 
 		}
@@ -174,8 +173,8 @@ class ExperienceBookingController extends Controller {
 	}
 
 	public function packege_book_details($id) {
-	    $user_id = Auth::user()->id;
-		$packege = UserPackege::where('id', $id)->where('user_id',$user_id)->first();
+		$user_id = Auth::user()->id;
+		$packege = UserPackege::where('id', $id)->where('user_id', $user_id)->first();
 		return view('fontend.profile.booking_details', compact('packege'));
 	}
 
@@ -223,8 +222,8 @@ class ExperienceBookingController extends Controller {
 
 			$apiContext = new ApiContext(
 				new OAuthTokenCredential(
-					env('PAYPAL_CLIENT_ID',config('settings.paypale_client_id')),
-					env('PAYPAL_SECRET',config('settings.paypale_client_secret'))
+					env('PAYPAL_CLIENT_ID', config('settings.paypale_client_id')),
+					env('PAYPAL_SECRET', config('settings.paypale_client_secret'))
 				)
 			);
 			$payer = new Payer();

@@ -196,6 +196,9 @@
 				<div class="col-md-12">
 					<span class="price-label">RM {{ $hotel->price }}</span><span class="per-night"> per night</span>
 				</div>
+				<div class="col-md-12" id="total_price_row" style="display: none;">
+					<span id="total_price_text"></span> (<span class="per-night" id="total_night"> </span>)
+				</div>
 				<div class="col-md-12">
 					<hr>
 				</div>
@@ -210,8 +213,10 @@
 						<div class="row">
 							<div class="col-md-12" style="padding-bottom: 10px;">
 								<input type="hidden" value="{{ $hotel->id }}" name="hotel_id">
-								<input type="hidden" value="{{ $hotel->price }}" name="price">
-								<input type="date" id="check_in" class="form-control form-control100" name="check_in" required />
+								<input type="hidden" value="{{ $hotel->price }}" name="price" id="price">
+								<input type="hidden" value="1" name="night" id="night">
+								<input type="hidden" value="1" name="total_price" id="total_price">
+								<input type="date" id="check_in" class="form-control form-control100" name="check_in" required min="{{ date('Y-m-d') }}" />
 							</div>
 						</div>
 						<div class="row">
@@ -221,7 +226,7 @@
 						</div>
 						<div class="row">
 							<div class="col-md-12" style="padding-bottom: 10px;">
-								<input type="date" id="check_out" class="form-control form-control100" name="check_out" required />
+								<input type="date" id="check_out" class="form-control form-control100" name="check_out" required  min="{{ date('Y-m-d') }}" />
 							</div>
 						</div>
 						<div class="row">
@@ -264,7 +269,9 @@
 			<div class="col-lg-3 col-md-6 borderimg1">
 				<center>
 				<div class="darkbg3">
+					<a href="{{ route('hotel.show', $hotel->id) }}">
 					<img src="{{asset('/storage/hotel/photo/'.$hotel->photo)}}" class="img3"/>
+				</a>
 					<div class="row">
 						<div class="col-md-12 titleimg4"><a href="{{ route('hotel.show', $hotel->id) }}">{{ $hotel->name }}</a></div>
 						<div class="col-md-7 reviewcontainer">
@@ -301,4 +308,34 @@
 <!--===============================================================================================-->
 <script type="text/javascript" src="{{asset('fontend/js/hotel-booking.js')}}"></script>
 <script src="{{asset('fontend/js/toastr.min.js')}}"></script>
+<script>
+$(document).on('change', '#check_in, #check_out', function(){
+	var check_in = $('#check_in').val();
+	var check_out = $('#check_out').val();
+	var days = (Date.parse(check_out) - Date.parse(check_in)) / 86400000;
+	if(isNaN(days)){
+		days = 0;
+	}
+
+	var price = $('#price').val();
+	$('#night').val(days);
+	var total_price = price * days;
+	if(total_price > 0){
+		if(days > 1){
+			var msg = 'nights';
+		}else{
+			var msg = 'night';
+		}
+		$('#total_night').text('x '+days+' '+msg);
+		$('#total_price_text').text('RM '+total_price);
+		$('#total_price').val(total_price);
+		$('#total_price_row').show();
+	} else{
+		$('#total_night').text('');
+		$('#total_price_text').text('');
+		$('#total_price').val(1);
+		$('#total_price_row').hide();
+	}
+})
+</script>
 @endpush

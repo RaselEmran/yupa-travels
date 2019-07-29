@@ -18,7 +18,9 @@ class CreateHotelBookingsTable extends Migration {
 			$table->date('check_in')->nullable();
 			$table->date('check_out')->nullable();
 			$table->integer('guest')->nullable();
+			$table->integer('night')->nullable();
 			$table->double('price', 10, 2)->nullable();
+			$table->double('total_price', 10, 2)->nullable();
 			$table->boolean('status')->default(false);
 			$table->string('secret')->nullable();
 			$table->string('invoice_no')->nullable();

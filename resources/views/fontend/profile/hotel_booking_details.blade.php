@@ -19,12 +19,16 @@
                 <th>Check Out Date</th>
                 <th>Guest</th>
                 <th>Price</th>
+                <th>Night</th>
+                <th>Total</th>
             </tr>
             <tr>
                 <td>{{$hotel_booking->check_in}}</td>
                 <td>{{$hotel_booking->check_out}}</td>
                 <td>{{$hotel_booking->guest}}</td>
                 <td>{{$hotel_booking->price}}</td>
+                <td>{{$hotel_booking->night}}</td>
+                <td>{{$hotel_booking->total_price}} </td>
             </tr>
         </table>
     </div>
