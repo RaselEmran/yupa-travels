@@ -1,24 +1,12 @@
-@extends('admin.layouts.master')
-@section('pageTitle') Hotel @endsection
-@section('page-header')
-<div class="page-header page-header-default">
-    <div class="breadcrumb-line">
-        <ul class="breadcrumb">
-            <li><a href="{{ route('admin.dashboard') }}"><i class="icon-home2 position-left"></i> Home</a></li>
-            <li class="active">Hotel</li>
-        </ul>
-    </div>
-</div>
-@endsection
-@section('content')
-<div class="panel panel-flat">
-    <div class="panel-heading">
-        <h5 class="panel-title">Hotel
-        <a href="{{ route('admin.hotel') }}" class="btn btn-info"><i class="icon-stack-plus mr-2"></i>View</a>
-        </h5>
-    </div>
-    <div class="panel-body">
-        <form role="form" action="{{ route('admin.hotel.update') }}" method="post" enctype="multipart/form-data" id="addForm">
+@extends('fontend.profile.profile')
+@section('pageTitle') dashboard @endsection
+@push('css')
+<link href="{{asset('fontend/css/toastr.min.css')}}" rel="stylesheet">
+@endpush
+@section('procontent')
+<div class="col-md-8 booking-order-details">
+	<div class="container-fluid">
+	    <form role="form" action="{{ route('hotel.update') }}" method="post" enctype="multipart/form-data" id="edithotel">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -35,21 +23,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>Price: * (Per Night)</label>
                         <input type="text" name="price" id="price" class="form-control" placeholder="Price" value="{{ $hotel->price }}">
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Status: *</label>
-                        <select name="status" id="status" class="form-control select">
-                            <option value="1" {{ $hotel->status == 1 ? 'selected': '' }}>Active</option>
-                            <option value="0" {{ $hotel->status != 1 ? 'selected' : '' }}>InActive</option>
-                        </select>
-                    </div>
-                </div>
+              
             </div>
             <div class="row">
                 <h4>Amenity</h4>
@@ -141,15 +121,60 @@
                 <button type="button" class="btn btn-link" id="submiting" style="display: none;">Processing <img src="{{ asset('ajaxloader.gif') }}" width="80px"></button>
             </div>
         </form>
-    </div>
-</div>
-@endsection
-@push('js')
-<script src="{{asset('backend/global_assets/js/plugins/editors/summernote/summernote.min.js')}}"></script>
-<script src="{{asset('backend/global_assets/js/plugins/forms/styling/uniform.min.js')}}"></script>
-<script src="{{asset('backend/global_assets/js/demo_pages/editor_summernote.js')}}"></script>
-<script src="{{asset('backend/global_assets/js/plugins/forms/selects/select2.min.js')}}"></script>
-<script src="{{asset('backend/global_assets/js/demo_pages/form_checkboxes_radios.js')}}"></script>
-<script src="{{asset('backend/global_assets/js/plugins/notifications/sweet_alert.min.js')}}"></script>
-<script src="{{asset('backend/assets/js/hotel.js')}}"></script>
+	
+		</div>
+	</div>
+	@endsection
+	@push('js')
+	<script src="{{asset('fontend/js/toastr.min.js')}}"></script>
+	<script>
+	    $('.select').select2();
+		//profile pic.....
+		$(document).on('submit', '#edithotel', function(e) {
+	    e.preventDefault();
+	    $(".ajax_error").remove();
+	    var formData = new FormData($(this)[0]);
+   		var url = $(this).attr('action');
+	    $.ajax({
+	      	  method:'POST',
+              url: url,
+              data:formData,
+              dataType:'JSON',
+              contentType: false,
+              cache: false,
+              processData: false,
+	        success: function(data) {
+	            if (data.success) {
+	            	if(data.status == 'danger'){
+                    toastr.warning(data.message);
+                  }
+	                else{
+	                toastr.success(data.message);
+	                 setTimeout(function(){
+
+                      window.location.href=data.goto;
+                      },2500);
+	                }
+	            }
+	             else {
+	                const errors = data.message
+	                    // console.log(errors)
+	                var i = 0;
+	                $.each(errors, function(key, value) {
+	                    const first_item = Object.keys(errors)[i]
+	                    const message = errors[first_item][0]
+	                    $('#' + first_item).after('<div class="ajax_error" style="color:red">' + value + '</div');
+	                    toastr.error(value);
+	                    i++;
+	                });
+	            }
+	        },
+	        error: function(data) {
+	            var jsonValue = $.parseJSON(data.responseText);
+	            toastr.error(jsonValue.message);
+
+	        }
+	    });
+	});
+</script>
 @endpush

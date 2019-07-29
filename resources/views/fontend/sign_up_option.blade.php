@@ -6,7 +6,7 @@
 @section('page-header')
 <!-- 		<img src="{{asset('fontend/images/bg8.jpg')}}" class="bg1"/>
 				<div class="centered3 titleimg9">
-					<h2>Sign up with YuPa</h2>				
+					<h2>Sign up with YuPa</h2>
 				</div> -->
 <div class="bg2 overlay" style="background-image: url(https://yupa.asia/public/fontend/images/bg8.jpg);">
     <div class="container">
@@ -28,7 +28,7 @@
 <div class="row">
 			<div id="content6">
 				<div class="container">
-					<div class="row">		
+					<div class="row">
 						<div class="col-md-2"></div>
 						<div class="col-md-4 borderimg1">
 							<center>
@@ -41,7 +41,7 @@
 								</div>
 							</div>
 							</center>
-						</div>	
+						</div>
 						<div class="col-md-4 borderimg1">
 							<center>
 							<div class="border-option">
@@ -50,18 +50,18 @@
 									<div class="col-md-12 titleimg10">Frequent Traveller</div>
 									<div class="col-md-12 desc1"><p>Welcome you with better discounts</p></div>
 									<div class="col-md-12 price1">
-									<a href="{{ route('sign-up') }}" class="btn btn-info">Create account</a>
+									<a href="{{ route('sign-up', ['sign_up' => 'traveller']) }}" class="btn btn-info">Create account</a>
 									</div>
 								</div>
 							</div>
 							</center>
-						</div>	
+						</div>
 						<div class="col-md-2"></div>
 					</div>
 				</div>
 			</div>
 		</div>
-  
+
 
 @endsection
 
